@@ -8,12 +8,14 @@ router.post('/', async (req, res) => {
 
   console.log(action);
 
-  try {
-    const resource = await db('actions').insert(action);
-    console.log(resource);
-  } catch(err) {
-    res.status(500).json(err);
-  }
+  db('actions')
+    .insert(action)
+    .then(count => {
+      res.status(201).json(count)
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 })
 
 
