@@ -6,8 +6,6 @@ router.post('/', async (req, res) => {
     ...req.body, completed: req.body.completed || false
   }
 
-  console.log(action);
-
   db('actions')
     .insert(action)
     .then(count => {

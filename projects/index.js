@@ -1,6 +1,16 @@
 const router = require('express').Router()
 const db = require('../data/dbConfig.js');
 
+router.get('/', (req, res) => {
+  db('projects')
+    .then(projects => {
+      res.status(200).json(projects);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    })
+});
+
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   db('projects')
@@ -47,7 +57,6 @@ router.delete('/:id', (req, res) => {
     .where({ id })
     .del()
     .then(project => {
-      console.log(project)
       if (project) {
         res.status(200).json({ message: 'Project deleted' });
       } else {
