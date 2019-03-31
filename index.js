@@ -2,8 +2,8 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 
-const projects = require('./projects/');
-const actions = require('./actions/');
+const projects = require('./controllers/projects/projects.routes.js');
+const actions = require('./controllers/actions/actions.routes.js');
 
 const server = express();
 
